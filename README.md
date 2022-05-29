@@ -10,4 +10,9 @@ Project is created with:
 
 ## How to use
 1. Clone this repository: git clone
-2. Go to folder 
+2. pip install virtualenv.
+3. virtualenv “name as you like”
+3. source env/bin/activate.
+4. pip install django.
+5. pip install -r requirement.txt.
+6. python manage.py runserver.
