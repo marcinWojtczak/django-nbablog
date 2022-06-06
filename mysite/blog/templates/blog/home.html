@@ -1,4 +1,5 @@
 {% extends "blog/base.html" %}
+{% load embed_video_tags %}
 {% block content %}
     <h2 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2>
     {% for post in posts_list %}
@@ -10,6 +11,8 @@
                 <small class="text-muted">{{ post.created }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
+            {% video post.url 'small' %}
+            {{ video.url }}
             <p class="article-content">{{ post.content }}</p>
             </div>
         </article>

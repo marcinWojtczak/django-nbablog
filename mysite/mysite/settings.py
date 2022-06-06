@@ -49,7 +49,13 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'storages',
+<<<<<<< HEAD
     'embed_video',
+=======
+    'movies',
+    'embed_video',
+    
+>>>>>>> d0f8e483f24c8ce90b0376243617d9906270806b
     
 ]
 
