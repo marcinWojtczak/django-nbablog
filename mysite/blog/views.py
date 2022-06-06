@@ -35,10 +35,10 @@ class PostDetailView(DetailView):
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'url', 'content']
     
 
-    # currend loggin user is author of the post
+    # current loggin user is author of the post
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -59,7 +59,7 @@ class PostCommentView(CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title', 'content']
+    fields = ['title', 'url', 'content']
 
     # current loggin user is author of the post
     def form_valid(self, form):
