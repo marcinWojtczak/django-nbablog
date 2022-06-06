@@ -1,4 +1,5 @@
 {% extends 'blog/base.html' %}
+{% load embed_video_tags %}
 {% block content %}
         <article class="media content-section">
           <div class="media-body">
@@ -12,6 +13,10 @@
               {% endif %}
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
+            <h3 class="mb-5">video</h3>
+            {% for item in object.videos.all %}
+              {% video item.url %}
+            {% endfor %}
             <p class="article-content">{{ object.content }}</p>
           </div>
         </article>
