@@ -9,6 +9,7 @@
           <p class="text-secondary">{{ user.email }}</p>
         </div>
       </div>
+      <!--multipart/form-data = This value is necessary if the user will upload a file through the form  -->
       <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           <fieldset class="form-group">

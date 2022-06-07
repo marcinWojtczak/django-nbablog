@@ -24,7 +24,7 @@ from users import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', views.register, name='register-page'),
-    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login-page'),
+    path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login-page'), # template_name where to look for tempalte
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout-page'),
     path('profile/', views.profile, name='profile-page'),
     path('password-reset/', auth_views.PasswordResetView.as_view(

@@ -10,14 +10,6 @@ class UserRegisterForm(UserCreationForm):
         model = User    # where to send data
         fields = ['username','email']
 
-
-
-# class LoginForm(forms.Form):
-#     username = forms.CharField(max_length=50)
-#     email = forms.EmailField(required=True)
-#     password = forms.CharField(widget=forms.PasswordInput)
-
-
 class UserUpdateForm(forms.ModelForm):
     email = forms.EmailField(required=True)
 
