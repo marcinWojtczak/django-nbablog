@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'storages',
     'movies',
     'embed_video',
+    
 ]
 
 MIDDLEWARE = [
