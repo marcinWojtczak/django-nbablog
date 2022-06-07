@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from . models import Post, Comment, Video
+from . models import Post, Comment
 from . forms import CommentForm
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -54,14 +54,6 @@ class PostCommentView(CreateView):
         return super().form_valid(form)
     
     success_url = '/'
-
-class PostVideo(CreateView):
-    models = Video
-    title = ['title']
-
-    def get_video(self):
-        return Video.objcts.all()
-
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post

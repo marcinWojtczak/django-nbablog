@@ -19,7 +19,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from users import views 
-from movies.views import movies_view
 
 
 urlpatterns = [
@@ -28,7 +27,6 @@ urlpatterns = [
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login-page'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout-page'),
     path('profile/', views.profile, name='profile-page'),
-    path('movies/', movies_view, name='movies_views'),
     path('password-reset/', auth_views.PasswordResetView.as_view(
         template_name='users/password_reset.html'),name='password-reset'),              
 
