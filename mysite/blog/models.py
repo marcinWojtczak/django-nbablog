@@ -47,5 +47,4 @@ class Comment(models.Model):
     from embed_video.fields import EmbedVideoField
 
 
-
     

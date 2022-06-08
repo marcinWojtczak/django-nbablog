@@ -13,12 +13,14 @@
               {% endif %}
             </div>
             <h2 class="article-title">{{ object.title }}</h2>
-            <h3 class="mb-5">video</h3>
+            <br>
             {% for item in object.videos.all %}
               {% video item.url %}
             {% endfor %}
             {% video post.url 'small' %}
             {{ video.url }}
+            <br>
+            <br>
             <p class="article-content">{{ object.content }}</p>
           </div>
         </article>

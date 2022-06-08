@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from . models import Post, Comment
-from . forms import CommentForm
+from . forms import CommentForm, SearchForm
 from django.http import HttpResponse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
+from django.contrib.postgres.search import SearchVector
 
 
 class PostListView(ListView):
@@ -84,8 +85,17 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return False
 
     
-
-
+def post_search_view(request):
+    
+    print(request.GET)
+    query_dict = request.GET
+    query = query_dict.get("q")
+    post_obj = Post.objects.annotate(search=SearchVector('title', 'content')).get(search=query)
+    context = {
+        "post": post_obj
+    }
+    
+    return render(request, "blog/post_search.html", context)
 
 
 def about_page(request):
