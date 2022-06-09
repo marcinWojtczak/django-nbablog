@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from . models import Post, Comment
 from . forms import CommentForm, SearchForm
 from django.http import HttpResponse
@@ -6,8 +6,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.models import User
 from django.contrib.postgres.search import SearchVector
-
-
+from django.contrib import messages
+from django.db.models import Q
 class PostListView(ListView):
     model = Post
     template_name = "blog/home.html"
@@ -87,12 +87,15 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
 def post_search_view(request):
     
-    print(request.GET)
-    query_dict = request.GET
-    query = query_dict.get("q")
-    post_obj = Post.objects.annotate(search=SearchVector('title', 'content')).get(search=query)
+    query = request.GET.get('q')
+    qs = Post.objects.all()
+    if query is not None:
+        lookup = Q(title__icontains=query) | Q(content__icontains=query)
+        qs = Post.objects.filter(lookup)
+        messages.info(request, f'Search result for {query}')
+
     context = {
-        "post": post_obj
+        "posts": qs
     }
     
     return render(request, "blog/post_search.html", context)

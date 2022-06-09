@@ -30,10 +30,7 @@
           <div class="navbar-nav mr-auto">
             <a class="nav-item nav-link" href="{% url 'home-page' %}">Home</a>
             <a class="nav-item nav-link" href="{% url 'about-page' %}">About</a>
-            <form action="{% url 'post-search' %}" method="get">
-              <input type="text"  name="q" placeholder="search post">
-              <input type="submit">
-            </form>
+            {% block searchcontent%}{% endblock searchcontent %}
           </div>
           <!-- Navbar Right Side -->
           <div class="navbar-nav">
@@ -58,7 +55,7 @@
         <div class="alert alert-{{ message.tags }}">
           {{ message }}
         </div>
-        {% endfor%}
+        {% endfor %}
         {% endif %}
         {% block content %}{% endblock %}
       </div>

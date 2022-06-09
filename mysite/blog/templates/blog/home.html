@@ -1,7 +1,20 @@
 {% extends "blog/base.html" %}
 {% load embed_video_tags %}
+
+{% block searchcontent %}
+<!-- Search form -->
+<form action="{% url 'post-search' %}" method="get">
+    <div class="input-group ml-3 mb-0">
+        <input class="form-control" type="text" name="q" placeholder="Search">
+        <div class="input-group-append">
+            <input class="btn btn-outline-dark" type="submit">
+        </div>
+    </div>
+</form>
+{% endblock searchcontent %}
+
 {% block content %}
-    <h2 class="mb-3">Posts by {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2>
+    <h2 class="mb-3">Number of Posts {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2>
     {% for post in posts_list %}
         <article class="media content-section">
             <div class="media-body">
