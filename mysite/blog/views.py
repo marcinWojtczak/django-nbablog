@@ -8,6 +8,8 @@ from django.contrib.auth.models import User
 from django.contrib.postgres.search import SearchVector
 from django.contrib import messages
 from django.db.models import Q
+
+
 class PostListView(ListView):
     model = Post
     template_name = "blog/home.html"
@@ -32,7 +34,6 @@ class PostDetailView(DetailView):
     fields = ['title', 'content']
     
 
-
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
     fields = ['title', 'url', 'content']
@@ -53,8 +54,8 @@ class PostCommentView(CreateView):
     def form_valid(self, form):
         form.instance.post_id = self.kwargs['pk']
         return super().form_valid(form)
-    
     success_url = '/'
+
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
@@ -93,11 +94,9 @@ def post_search_view(request):
         lookup = Q(title__icontains=query) | Q(content__icontains=query)
         qs = Post.objects.filter(lookup)
         messages.info(request, f'Search result for {query}')
-
     context = {
         "posts": qs
     }
-    
     return render(request, "blog/post_search.html", context)
 
 

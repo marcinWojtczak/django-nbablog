@@ -1,8 +1,6 @@
 from . models import Comment
 from django import forms
 
-
-
 class SearchForm(forms.Form):
     search_post = forms.CharField(max_length=50)
     

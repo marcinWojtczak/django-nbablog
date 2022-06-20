@@ -14,7 +14,6 @@
 {% endblock searchcontent %}
 
 {% block content %}
-    <h2 class="mb-3">Number of Posts {{ view.kwargs.username }} ({{ page_obj.paginator.count }})</h2>
     {% for post in posts_list %}
         <article class="media content-section">
             <div class="media-body">
@@ -27,8 +26,6 @@
             <br>
             {% video post.url 'small' %}
             {{ video.url }}
-            <br>
-            <br>
             <p class="article-content">{{ post.content }}</p>
             </div>
         </article>

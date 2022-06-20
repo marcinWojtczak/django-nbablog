@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.utils.text import slugify
 from django.urls import reverse
 from embed_video.fields import EmbedVideoField
 
@@ -11,12 +12,15 @@ class Post(models.Model):
     url = EmbedVideoField(blank=True)
     content = models.TextField(blank=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=250, unique_for_date='published')  # require that this field be unique for the value of the published  field
+    slug = models.SlugField(max_length=100, blank=True, null=True)  # require that this field be unique for the value of the published  field
     published = models.DateTimeField(default=timezone.now)
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
-
+    def save(self, *args, **kwargs):
+        if self.slug is None:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
     class Meta:
         ordering = ['-published']
 
@@ -25,6 +29,7 @@ class Post(models.Model):
     
     def get_absolute_url(self):
         return reverse('post-detail', kwargs={'pk': self.pk})
+        #return reverse('post-detail', kwargs={'slug': self.slug})
 
 
 class Comment(models.Model):
@@ -35,8 +40,6 @@ class Comment(models.Model):
     email = models.EmailField()
     created = models.DateTimeField(auto_now=True)
     updated = models.DateTimeField(auto_now=True)
-    
-
     class Meta:
         ordering = ['created']
 
@@ -44,7 +47,7 @@ class Comment(models.Model):
         return f'Comment by {self.name} on {self.post}'
 
     
-    from embed_video.fields import EmbedVideoField
+    
 
 
     

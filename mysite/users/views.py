@@ -8,14 +8,13 @@ from django.contrib.auth.decorators import login_required
 
 def register(request):
     if request.method == "POST":
-
         # create a form instance and populate it with data from the request:
         form = UserRegisterForm(request.POST)
         print(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            messages.success(request, "Your account has been create. You can login")  # alert.succes in base temaplte
+            messages.success(request, "Your account has been create. You can login")  # alert.success in base temaplte
             return redirect('login-page')
     else:
         form = UserRegisterForm
@@ -36,12 +35,10 @@ def profile(request):
     else:
         u_form = UserUpdateForm(instance=request.user)
         p_form = ProfileUpdateForm(instance=request.user.profile)
-
     context = {
         'u_form': u_form,
         'p_form': p_form
     }
-        
     return render(request, 'users/profile.html', context)
 
 

@@ -28,12 +28,14 @@ body {
     font-weight: 500;
   }
   
+ 
+
   .content-section {
     background: #ffffff;
-    padding: 10px 20px;
+    padding: 10px 20px; 
     border: 1px solid #dddddd;
     border-radius: 3px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
   }
   
   .article-title {
@@ -47,6 +49,7 @@ body {
   
   .article-content {
     white-space: pre-line;
+    padding-top: 20px;
   }
   
   .article-img {
