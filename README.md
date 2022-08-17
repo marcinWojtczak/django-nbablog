@@ -15,3 +15,7 @@ Project is created with:
 3. source env/bin/activate.
 4. pip install -r requirement.txt.
 5. python manage.py runserver.
+
+## Heroku website
+
+https://django-nbablog.herokuapp.com/
