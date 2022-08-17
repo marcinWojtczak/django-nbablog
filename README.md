@@ -1,5 +1,5 @@
 # django-nbablog
-This is django blog aplication that provides main functions for blog such as: regirtration, login, logut, add post, delete post, update post, comment, 
+This is django blog aplication that provides main functions for blog such as: registration, login, logut, add post, delete post, update post, comment, 
 
 ## Technologiest
 
