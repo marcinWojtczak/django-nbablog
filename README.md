@@ -16,6 +16,4 @@ Project is created with:
 4. pip install -r requirement.txt.
 5. python manage.py runserver.
 
-## Heroku website
 
-https://django-nbablog.herokuapp.com/
