@@ -20,3 +20,5 @@ if path not in sys.path:
     sys.path.append(path)
 
 application = get_wsgi_application()
+
+app = application

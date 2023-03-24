@@ -17,19 +17,25 @@ class Post(models.Model):
     created = models.DateField(auto_now_add=True)
     updated = models.DateField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        if self.slug is None:
-            self.slug = slugify(self.title)
-        super().save(*args, **kwargs)
+    # def save(self, *args, **kwargs):
+    #     if self.slug is None:
+    #         self.slug = slugify(self.title)
+    #     super().save(*args, **kwargs)
     class Meta:
         ordering = ['-published']
 
     def __str__(self):
         return self.title
-    
+
+    # tell django how to find url to any specific instance of the post
     def get_absolute_url(self):
-        return reverse('post-detail', kwargs={'pk': self.pk})
-        #return reverse('post-detail', kwargs={'slug': self.slug})
+        #return reverse('post-detail', kwargs={'pk': self.pk})
+        return reverse('post-detail', kwargs={'slug': self.slug}) # reverse return the full URL to that rout as a string
+
+    def save(self, *args, **kwargs):
+        if self.slug is None:
+            self.slug = slugify(self.title)
+        return super().save(*args, **kwargs)
 
 
 class Comment(models.Model):
