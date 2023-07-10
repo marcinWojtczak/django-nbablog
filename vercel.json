@@ -1,15 +1,26 @@
 {
-    "builds": [
-      {
-        "src": "NBABlog/wsgi.py",
-        "use": "@vercel/python",
-        "config": { "maxLambdaSize": "15mb" }
+  "builds": [
+    {
+      "src": "NBABlog/wsgi.py",
+      "use": "@vercel/python",
+      "config": { "maxLambdaSize": "15mb" }
+    },
+    {
+      "src": "build_files.sh",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "staticfiles_build"
       }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "NBABlog/wsgi.py"
-      }
-    ]
+    }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "NBABlog/wsgi.py"
+    }
+  ]
 }
